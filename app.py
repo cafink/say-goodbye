@@ -21,20 +21,34 @@ levels = {
     "Celeste/LostLevels": "Farewell"
 }
 
-for prop, displayname in save_info.items():
-    print(displayname + ": " + str(soup.find(prop).string))
+level_info = {
+    "Cassette": "Cassette collected"
+}
 
-stage_count = 0
+side_info = {
+    "TotalStrawberries": "Strawberry count"
+}
+
+for prop, display_name in save_info.items():
+    print(display_name + ": " + eval("soup.SaveData." + prop + ".string"))
+
+stage_count = 1
 for internalname, displayname in levels.items():
-    stage_count += 1
     print("Stage " + str(stage_count) + ": " +  displayname)
 
-    area = soup.find("AreaStats", SID=internalname)
-    print("  Cassette collected: " + area["Cassette"])
+    level = soup.SaveData.Areas.find("AreaStats", SID=internalname)
+    for level_prop, level_display_name in level_info.items():
+        print("  " + level_display_name + ": " + level[level_prop])
 
-    sides = area.find_all("AreaModeStats")
+    sides = level.Modes.find_all("AreaModeStats")
 
     side_letter = "A"
     for side in sides:
-        print("  " + side_letter + "-side strawberry count: " + str(side.attrs["TotalStrawberries"]))
-        side_letter = chr(ord(side_letter) + 1)
+        print("  " + side_letter + "-side")
+
+        for side_prop, side_display_name in side_info.items():
+           print("    " + side_display_name + ": " + str(side.attrs[side_prop]))
+
+        side_letter = chr(ord(side_letter) + 1) # increment letter
+
+    stage_count += 1
