@@ -34,7 +34,7 @@ for prop, display_name in save_info.items():
 
 stage_count = 1
 for internalname, displayname in levels.items():
-    print("Stage " + str(stage_count) + ": " +  displayname)
+    print("Stage " + str(stage_count) + ": " + displayname)
 
     level = soup.SaveData.Areas.find("AreaStats", SID=internalname)
     for level_prop, level_display_name in level_info.items():
@@ -47,8 +47,13 @@ for internalname, displayname in levels.items():
         print("  " + side_letter + "-side")
 
         for side_prop, side_display_name in side_info.items():
-           print("    " + side_display_name + ": " + str(side.attrs[side_prop]))
+            print(
+                "    " +
+                side_display_name +
+                ": " +
+                str(side.attrs[side_prop])
+            )
 
-        side_letter = chr(ord(side_letter) + 1) # increment letter
+        side_letter = chr(ord(side_letter) + 1)  # increment letter
 
     stage_count += 1
