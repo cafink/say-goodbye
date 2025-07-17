@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from classes.side import Side
 
 
 class Chapter:
@@ -9,13 +10,21 @@ class Chapter:
         self.internal_name = internal_name
 
     def load_details_from_xml(self, xml):
-        chapter_details = xml.SaveData.Areas.find(
-            "AreaStats",
-            SID="Celeste/" + self.internal_name
-        )
+        self.cassette_collected = xml["Cassette"]
 
-        self.cassette_collected = chapter_details["Cassette"]
+        self.sides = []
+
+        side_letter = "A"
+        xml_sides = xml.Modes.find_all("AreaModeStats")
+        for xml_side in xml_sides:
+            side = Side(side_letter)
+            side.load_details_from_xml(xml_side)
+            self.sides.append(side)
+
+            side_letter = chr(ord(side_letter) + 1)  # increment letter
 
     def print_details(self):
         print("Chapter " + str(self.number) + ": " + self.name)
         print("  Cassette collected: " + self.cassette_collected)
+        for side in self.sides:
+            side.print_details()

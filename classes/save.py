@@ -22,10 +22,6 @@ class Save:
         "LostLevels": "Farewell"
     }
 
-    side_info = {
-        "TotalStrawberries": "Strawberry count"
-    }
-
     def load_from_file(self, filename):
 
         f = open(filename, "r")
@@ -40,24 +36,13 @@ class Save:
         stage_count = 1
         for internal_name, display_name in self.chapter_names.items():
 
+            xml_chapter = soup.SaveData.Areas.find(
+                "AreaStats",
+                SID="Celeste/" + internal_name
+            )
+
             chapter = Chapter(stage_count, display_name, internal_name)
-            chapter.load_details_from_xml(soup)
+            chapter.load_details_from_xml(xml_chapter)
             chapter.print_details()
-
-            # sides = level.Modes.find_all("AreaModeStats")
-
-            # side_letter = "A"
-            # for side in sides:
-            #     print("  " + side_letter + "-side")
-
-            #     for side_prop, side_display_name in self.side_info.items():
-            #         print(
-            #             "    " +
-            #             side_display_name +
-            #             ": " +
-            #             str(side.attrs[side_prop])
-            #         )
-
-            #     side_letter = chr(ord(side_letter) + 1)  # increment letter
 
             stage_count += 1
