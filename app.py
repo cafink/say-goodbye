@@ -1,4 +1,4 @@
 from classes.save import Save
 
-save = Save()
-save.load_from_file("saves/0.celeste (175 save)")
+save = Save("saves/0.celeste (175 save)")
+save.print_details()

@@ -4,11 +4,6 @@ from classes.chapter import Chapter
 
 class Save:
 
-    save_info = {
-        "Version": "Celeste version",
-        "Name": "Name",
-        "TotalStrawberries": "Strawberry count"
-    }
 
     chapter_names = {
         "1-ForsakenCity": "Forsaken City",
@@ -22,27 +17,39 @@ class Save:
         "LostLevels": "Farewell"
     }
 
-    def load_from_file(self, filename):
+    def __init__(self, filename):
 
         f = open(filename, "r")
         soup = BeautifulSoup(f.read(), "xml")
 
-        for prop, display_name in self.save_info.items():
-            print(
-                display_name +
-                ": " + eval("soup.SaveData." + prop + ".string")
-            )
+        self.load_details_from_xml(soup)
+
+    def load_details_from_xml(self, xml):
+
+        self.version = xml.SaveData.Version.string
+        self.name = xml.SaveData.Name.string
+        self.strawberry_count = xml.SaveData.TotalStrawberries.string
+
+        self.chapters = []
 
         stage_count = 1
         for internal_name, display_name in self.chapter_names.items():
 
-            xml_chapter = soup.SaveData.Areas.find(
+            xml_chapter = xml.SaveData.Areas.find(
                 "AreaStats",
                 SID="Celeste/" + internal_name
             )
 
             chapter = Chapter(stage_count, display_name, internal_name)
             chapter.load_details_from_xml(xml_chapter)
-            chapter.print_details()
-
+            self.chapters.append(chapter)
             stage_count += 1
+
+    def print_details(self):
+
+        print("Celeste version: " + self.version)
+        print("Name: " + self.name)
+        print("Strawberry count: " + self.strawberry_count)
+
+        for chapter in self.chapters:
+            chapter.print_details()
