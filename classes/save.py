@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from classes.chapter import Chapter
 
 
 class Save:
@@ -9,20 +10,16 @@ class Save:
         "TotalStrawberries": "Strawberry count"
     }
 
-    levels = {
-        "Celeste/1-ForsakenCity": "Forsaken City",
-        "Celeste/2-OldSite": "Old Site",
-        "Celeste/3-CelestialResort": "Celestial Resort",
-        "Celeste/4-GoldenRidge": "Golden Ridge",
-        "Celeste/5-MirrorTemple": "Mirror Temple",
-        "Celeste/6-Reflection": "Reflection",
-        "Celeste/7-Summit": "Summit",
-        "Celeste/9-Core": "Core",
-        "Celeste/LostLevels": "Farewell"
-    }
-
-    level_info = {
-        "Cassette": "Cassette collected"
+    chapter_names = {
+        "1-ForsakenCity": "Forsaken City",
+        "2-OldSite": "Old Site",
+        "3-CelestialResort": "Celestial Resort",
+        "4-GoldenRidge": "Golden Ridge",
+        "5-MirrorTemple": "Mirror Temple",
+        "6-Reflection": "Reflection",
+        "7-Summit": "Summit",
+        "9-Core": "Core",
+        "LostLevels": "Farewell"
     }
 
     side_info = {
@@ -41,27 +38,26 @@ class Save:
             )
 
         stage_count = 1
-        for internalname, displayname in self.levels.items():
-            print("Stage " + str(stage_count) + ": " + displayname)
+        for internal_name, display_name in self.chapter_names.items():
 
-            level = soup.SaveData.Areas.find("AreaStats", SID=internalname)
-            for level_prop, level_display_name in self.level_info.items():
-                print("  " + level_display_name + ": " + level[level_prop])
+            chapter = Chapter(stage_count, display_name, internal_name)
+            chapter.load_details_from_xml(soup)
+            chapter.print_details()
 
-            sides = level.Modes.find_all("AreaModeStats")
+            # sides = level.Modes.find_all("AreaModeStats")
 
-            side_letter = "A"
-            for side in sides:
-                print("  " + side_letter + "-side")
+            # side_letter = "A"
+            # for side in sides:
+            #     print("  " + side_letter + "-side")
 
-                for side_prop, side_display_name in self.side_info.items():
-                    print(
-                        "    " +
-                        side_display_name +
-                        ": " +
-                        str(side.attrs[side_prop])
-                    )
+            #     for side_prop, side_display_name in self.side_info.items():
+            #         print(
+            #             "    " +
+            #             side_display_name +
+            #             ": " +
+            #             str(side.attrs[side_prop])
+            #         )
 
-                side_letter = chr(ord(side_letter) + 1)  # increment letter
+            #     side_letter = chr(ord(side_letter) + 1)  # increment letter
 
             stage_count += 1
