@@ -28,3 +28,6 @@ class Chapter:
         print("  Cassette collected: " + self.cassette_collected)
         for side in self.sides:
             side.print_details()
+
+    def has_sides(self):
+        return self.number in range(9)

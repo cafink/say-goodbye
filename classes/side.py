@@ -24,3 +24,6 @@ class Side:
         else:
             print()
         print("    Strawberry count: " + str(self.strawberry_count))
+
+    def has_strawberries(self):
+        return self.letter == SideLetter("A")

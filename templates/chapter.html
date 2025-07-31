@@ -2,8 +2,13 @@
 	<h1>Chapter {{ chapter.number }}: {{ chapter.name }}</h1>
 	<ul><li><strong>Cassette collected:</strong> {{ chapter.cassette_collected }}</li></ul>
 
-	{% for side in chapter.sides %}
-		{% include 'side.html' %}
-	{% endfor %}
-
+	{% if chapter.has_sides() %}
+		{% for side in chapter.sides %}
+			{% include 'side.html' %}
+		{% endfor %}
+	{% else %}
+		{% with side=chapter.sides[0] %}
+			{% include 'side.html' %}
+		{% endwith %}
+	{% endif %}
 </div>

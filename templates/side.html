@@ -1,7 +1,12 @@
 <div class="side">
-	<h2>
-	{{ side.letter }}-side
-	{% if side.got_heart %}&heartsuit;{% endif %}
-	</h2>
-	<ul><li><strong>Strawberry count:</strong> {{ side.strawberry_count }}</li></ul>
+	{% if chapter.has_sides() %}
+		<h2>
+		{{ side.letter }}-side
+		{% if side.got_heart %}&heartsuit;<!--&#x2764;&#xFE0F;&#128153;&#128155;-->{% endif %}
+		</h2>
+	{% endif %}
+
+	{% if side.has_strawberries() %}
+		<ul><li><strong>Strawberry count:</strong> {{ side.strawberry_count }}</li></ul>
+	{% endif %}
 </div>
