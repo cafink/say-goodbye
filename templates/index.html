@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Say Goodbye</title>
+{% endblock %}
+
+{% block body %}
+<div class="save">
+	<ul>
+		<li><strong>Celeste version:</strong>{{ save.version }}</li>
+		<li><strong>Name:</strong>{{ save.name }}</li>
+		<li><strong>Strawberry count:</strong>{{ save.strawberry_count }}</li>
+	</ul>
+
+	{% for chapter in save.chapters %}
+	<div class="chapter">
+		<h1>Chapter {{ chapter.number }}: {{ chapter.name }}</h1>
+		<ul><li><strong>Cassette collected:</strong> {{ chapter.cassette_collected }}</li></ul>
+
+		{% for side in chapter.sides %}
+		<div class="side">
+			<h2>
+			{{ side.letter }}-side
+			{% if side.got_heart %}&heartsuit;{% endif %}
+			</h2>
+			<ul><li><strong>Strawberry count:</strong> {{ side.strawberry_count }}</li></ul>
+		</div>
+		{% endfor %}
+
+	</div>
+	{% endfor %}
+
+</div>
+{% endblock %}
