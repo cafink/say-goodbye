@@ -1,0 +1,9 @@
+<div class="chapter">
+	<h1>Chapter {{ chapter.number }}: {{ chapter.name }}</h1>
+	<ul><li><strong>Cassette collected:</strong> {{ chapter.cassette_collected }}</li></ul>
+
+	{% for side in chapter.sides %}
+		{% include 'side.html' %}
+	{% endfor %}
+
+</div>
