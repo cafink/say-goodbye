@@ -4,7 +4,6 @@ from classes.chapter import Chapter
 
 class Save:
 
-
     chapter_names = {
         "1-ForsakenCity": "Forsaken City",
         "2-OldSite": "Old Site",
@@ -44,12 +43,3 @@ class Save:
             chapter.load_details_from_xml(xml_chapter)
             self.chapters.append(chapter)
             stage_count += 1
-
-    def print_details(self):
-
-        print("Celeste version: " + self.version)
-        print("Name: " + self.name)
-        print("Strawberry count: " + self.strawberry_count)
-
-        for chapter in self.chapters:
-            chapter.print_details()

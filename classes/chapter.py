@@ -23,11 +23,5 @@ class Chapter:
 
             side_letter = chr(ord(side_letter) + 1)  # increment letter
 
-    def print_details(self):
-        print("Chapter " + str(self.number) + ": " + self.name)
-        print("  Cassette collected: " + self.cassette_collected)
-        for side in self.sides:
-            side.print_details()
-
     def has_sides(self):
         return self.number in range(9)
