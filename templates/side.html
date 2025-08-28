@@ -2,7 +2,11 @@
 	{% if chapter.has_sides() %}
 		<h2>
 		{{ side.letter }}-side
-		{% if side.got_heart %}&heartsuit;<!--&#x2764;&#xFE0F;&#128153;&#128155;-->{% endif %}
+		{% if side.got_heart %}
+			<span class="{{ side.letter }}-side-heart">
+				&heartsuit;<!--&#x2764;&#xFE0F;&#128153;&#128155;-->
+			</span>
+		{% endif %}
 		</h2>
 	{% endif %}
 
