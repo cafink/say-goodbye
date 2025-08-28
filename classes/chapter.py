@@ -17,7 +17,7 @@ class Chapter:
         side_letter = "A"
         xml_sides = xml.Modes.find_all("AreaModeStats")
         for xml_side in xml_sides:
-            side = Side(side_letter)
+            side = Side(self.number, side_letter)
             side.load_details_from_xml(xml_side)
             self.sides.append(side)
 
