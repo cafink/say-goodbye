@@ -3,6 +3,16 @@
 	<ul><li><strong>Cassette collected:</strong> {{ chapter.cassette_collected }}</li></ul>
 
 	{% if chapter.has_sides() %}
+
+
+		{% for side in chapter.sides %}
+			{% if side.got_heart %}
+				<span class="heart {{ side.letter }}-side-heart">
+					&heartsuit;<!--&#x2764;&#xFE0F;&#128153;&#128155;-->
+				</span>
+			{% endif %}
+		{% endfor %}
+
 		{% for side in chapter.sides %}
 			{% include 'side.html' %}
 		{% endfor %}

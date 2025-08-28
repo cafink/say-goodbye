@@ -30,6 +30,10 @@ div.chapter {
 	filter: drop-shadow(2em 2em royalblue);
 }
 
+.heart {
+	font-size: 250%;
+}
+
 .A-side-heart {
 	color: dodgerblue;
 }
