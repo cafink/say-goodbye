@@ -2,6 +2,13 @@
 
 "Say goodbye to her for me."
 
+Run via Docker for development:
+
+```zsh
+docker build -t say-goodbye .
+docker run --rm -p 5000:5000 --mount type=bind,src=.,dst=/usr/src/app say-goodbye
+```
+
 Useful links:
 
 - [Some save file format details](https://www.reddit.com/r/celestegame/comments/s6ftrz/comment/ht43h4v/)
