@@ -1,4 +1,9 @@
+@font-face {
+	font-family: "Renogare";
+	src: url("/static/fonts/Renogare-Regular.otf") format("opentype");
+}
+
 body {
 	margin: 0;
-	font-family: sans-serif;
+	font-family: "Renogare", sans-serif;
 }
