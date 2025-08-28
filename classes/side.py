@@ -10,8 +10,7 @@ class SideLetter(StrEnum):
 
 class Side:
 
-    def __init__(self, chapter_number, letter, max_strawberry_count):
-        self.chapter_number = chapter_number
+    def __init__(self, letter, max_strawberry_count):
         self.letter = SideLetter(letter)
 
         if self.has_strawberries():
@@ -22,4 +21,4 @@ class Side:
         self.got_heart = xml.attrs["HeartGem"] == 'true'
 
     def has_strawberries(self):
-        return self.chapter_number < 9 and self.letter == SideLetter("A")
+        return self.letter == SideLetter("A")

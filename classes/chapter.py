@@ -32,7 +32,7 @@ class Chapter:
                 max_strawberry_count = MAX_STRAWBERRY_COUNTS[self.number]
             else:
                 max_strawberry_count = 0
-            side = Side(self.number, side_letter, max_strawberry_count)
+            side = Side(side_letter, max_strawberry_count)
             side.load_details_from_xml(xml_side)
             self.sides.append(side)
 
