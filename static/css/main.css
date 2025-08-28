@@ -6,16 +6,38 @@
 body {
 	margin: 0;
 	font-family: "Renogare", sans-serif;
+	background: cornflowerblue;
+	margin: 2em;
+}
+
+h1#title {
+	text-transform: uppercase;
+	font-size: 1000%;
+	color: white;
+	-webkit-text-stroke: 0.01em black;
+	text-shadow: 0.125em 0.125em royalblue;
+	margin-top: 0.15em;
+	margin-bottom: 0;
+}
+
+div.chapter {
+	display: inline-block;
+	margin: 0 5em 5em 0;
+	padding: 2em;
+	padding-right: 3em;
+	background: white;
+	outline: 0.5em solid black;
+	filter: drop-shadow(2em 2em royalblue);
 }
 
 .A-side-heart {
-	color: DodgerBlue;
+	color: dodgerblue;
 }
 
 .B-side-heart {
-	color: LightCoral;
+	color: lightcoral;
 }
 
 .C-side-heart {
-	color: Gold;
+	color: gold;
 }

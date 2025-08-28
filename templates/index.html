@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block body %}
+<h1 id="title">Celeste</h1>
 <div class="save">
 	<ul>
-		<li><strong>Celeste version:</strong>{{ save.version }}</li>
-		<li><strong>Name:</strong>{{ save.name }}</li>
-		<li><strong>Strawberry count:</strong>{{ save.strawberry_count }}</li>
+		<li><strong>Celeste version:</strong> {{ save.version }}</li>
+		<li><strong>Name:</strong> {{ save.name }}</li>
+		<li><strong>Strawberry count:</strong> {{ save.strawberry_count }}</li>
 	</ul>
 
 	{% for chapter in save.chapters %}
