@@ -10,9 +10,12 @@ class SideLetter(StrEnum):
 
 class Side:
 
-    def __init__(self, chapter_number, letter):
+    def __init__(self, chapter_number, letter, max_strawberry_count):
         self.chapter_number = chapter_number
         self.letter = SideLetter(letter)
+
+        if self.has_strawberries():
+            self.max_strawberry_count = max_strawberry_count
 
     def load_details_from_xml(self, xml):
         self.strawberry_count = xml.attrs["TotalStrawberries"]

@@ -1,6 +1,17 @@
 from bs4 import BeautifulSoup
 from classes.side import Side
 
+# Doesn't include golden strawberries
+MAX_STRAWBERRY_COUNTS = {
+    1: 20,
+    2: 18,
+    3: 25,
+    4: 29,
+    5: 31,
+    7: 47,
+    8: 5
+}
+
 
 class Chapter:
 
@@ -17,7 +28,11 @@ class Chapter:
         side_letter = "A"
         xml_sides = xml.Modes.find_all("AreaModeStats")
         for xml_side in xml_sides:
-            side = Side(self.number, side_letter)
+            if self.number in MAX_STRAWBERRY_COUNTS:
+                max_strawberry_count = MAX_STRAWBERRY_COUNTS[self.number]
+            else:
+                max_strawberry_count = 0
+            side = Side(self.number, side_letter, max_strawberry_count)
             side.load_details_from_xml(xml_side)
             self.sides.append(side)
 

@@ -11,6 +11,9 @@
 	{% endif %}
 
 	{% if side.has_strawberries() %}
-		<ul><li><strong>Strawberry count:</strong> {{ side.strawberry_count }}</li></ul>
+		<ul><li>
+			<strong>Strawberry count:</strong>
+			{{ side.strawberry_count }}/{{side.max_strawberry_count}}
+		</li></ul>
 	{% endif %}
 </div>
